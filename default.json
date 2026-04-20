@@ -1,0 +1,75 @@
+{
+  "$schema": "https://docs.renovatebot.com/renovate-schema.json",
+  "extends": [
+    "config:recommended",
+    ":timezone(Asia/Tokyo)"
+  ],
+  "schedule": ["every weekend"],
+  "automerge": true,
+  "platformAutomerge": true,
+  "dependencyDashboard": true,
+  "rangeStrategy": "bump",
+  "lockFileMaintenance": {
+    "enabled": true,
+    "schedule": ["before 5am on monday"]
+  },
+  "packageRules": [
+    {
+      "groupName": "devDependencies (minor/patch)",
+      "matchDepTypes": ["devDependencies"],
+      "matchUpdateTypes": ["minor", "patch", "pin", "digest"],
+      "automerge": true
+    },
+    {
+      "groupName": "dependencies (minor/patch)",
+      "matchDepTypes": ["dependencies"],
+      "matchUpdateTypes": ["minor", "patch", "pin", "digest"],
+      "automerge": true
+    },
+    {
+      "groupName": "Next.js major",
+      "matchPackageNames": ["next", "@next/**"],
+      "matchUpdateTypes": ["major"],
+      "labels": ["dependencies", "nextjs", "major-update", "breaking-change"],
+      "automerge": false,
+      "prPriority": 20
+    },
+    {
+      "groupName": "React major",
+      "matchPackageNames": ["react", "react-dom", "@types/react", "@types/react-dom"],
+      "matchUpdateTypes": ["major"],
+      "labels": ["dependencies", "react", "major-update", "breaking-change"],
+      "automerge": false,
+      "prPriority": 20
+    },
+    {
+      "groupName": "TypeScript major",
+      "matchPackageNames": ["typescript", "@types/**"],
+      "matchUpdateTypes": ["major"],
+      "labels": ["dependencies", "typescript", "major-update"],
+      "automerge": false,
+      "prPriority": 15
+    },
+    {
+      "groupName": "Tailwind major",
+      "matchPackageNames": ["tailwindcss", "@tailwindcss/**"],
+      "matchUpdateTypes": ["major"],
+      "labels": ["dependencies", "tailwind", "major-update", "breaking-change"],
+      "automerge": false
+    },
+    {
+      "groupName": "Biome major",
+      "matchPackageNames": ["@biomejs/biome"],
+      "matchUpdateTypes": ["major"],
+      "labels": ["dependencies", "biome", "major-update"],
+      "automerge": false
+    },
+    {
+      "groupName": "other major updates",
+      "matchUpdateTypes": ["major"],
+      "labels": ["dependencies", "major-update"],
+      "automerge": false,
+      "prPriority": 10
+    }
+  ]
+}
