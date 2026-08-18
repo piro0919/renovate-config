@@ -70,6 +70,20 @@
       "labels": ["dependencies", "major-update"],
       "automerge": false,
       "prPriority": 10
+    },
+    {
+      "groupName": "serwist",
+      "matchPackageNames": ["serwist", "@serwist/**"],
+      "matchUpdateTypes": ["minor", "patch", "pin", "digest"],
+      "automerge": true
+    },
+    {
+      "groupName": "serwist major",
+      "matchPackageNames": ["serwist", "@serwist/**"],
+      "matchUpdateTypes": ["major"],
+      "labels": ["dependencies", "serwist", "major-update", "breaking-change"],
+      "automerge": false,
+      "prPriority": 10
     }
   ]
 }
