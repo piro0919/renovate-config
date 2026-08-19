@@ -1,0 +1,12 @@
+{
+  "$schema": "https://docs.renovatebot.com/renovate-schema.json",
+  "description": "For apps that are too old to follow the ecosystem. Keeps minor/patch and lock file maintenance, drops every major.",
+  "extends": ["github>piro0919/renovate-config"],
+  "packageRules": [
+    {
+      "description": "古い土台では、周辺のパッケージが対応を打ち切っていて major を通せない。上げ先が無い PR を作り続けないよう止める。土台ごと作り直したら default に戻す",
+      "matchUpdateTypes": ["major"],
+      "enabled": false
+    }
+  ]
+}
