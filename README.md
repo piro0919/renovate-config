@@ -34,4 +34,16 @@ major を通せないことがある。その場合は `legacy` を使う。mino
 - Auto-merges minor/patch updates (both `dependencies` and `devDependencies`)
 - Groups major updates per framework (Next.js, React, TypeScript, Tailwind, Biome) for manual review
 - Weekly lock file maintenance (Monday before 5am)
-- Bumps version ranges in `package.json`
+- Bumps version ranges in `package.json` (`rangeStrategy: "bump"`)
+- Widens `peerDependencies` instead of bumping them (`rangeStrategy: "widen"`)
+
+### Why peers widen
+
+`bump` rewrites a range to start at the version it just updated to. That is what
+an app wants, but on a published library's `peerDependencies` it raises the floor
+to the latest release — `react: ">=19.2.8"` — and every consumer on an older
+patch suddenly gets a peer warning, or an install error under strict peers, for
+code that never needed the newer version. So peers only widen: `^18 || ^19`
+becomes `^18 || ^19 || ^20` when React 20 ships, and the floor stays wherever the
+library author set it. A range such as `>=18` already covers new majors, so
+Renovate leaves it alone. Raise a peer floor by hand when the code starts to need it.

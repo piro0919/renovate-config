@@ -85,6 +85,11 @@
       "labels": ["dependencies", "serwist", "major-update", "breaking-change"],
       "automerge": false,
       "prPriority": 10
+    },
+    {
+      "description": "Libraries publish peerDependencies as a promise of what they work with. Bumping would raise the floor to whatever came out last week and lock out every consumer below it, so peers only ever widen (e.g. ^18 || ^19 gains || ^20). App and dev dependencies keep the bump strategy above.",
+      "matchDepTypes": ["peerDependencies"],
+      "rangeStrategy": "widen"
     }
   ]
 }
