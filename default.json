@@ -5,6 +5,7 @@
     ":timezone(Asia/Tokyo)"
   ],
   "schedule": ["every weekend"],
+  "updateNotScheduled": false,
   "automerge": true,
   "platformAutomerge": true,
   "dependencyDashboard": true,
@@ -15,6 +16,11 @@
     "schedule": ["before 5am on monday"]
   },
   "packageRules": [
+    {
+      "description": "A lock file refresh has no release date of its own, so renovate/stability-days stayed pending and none of these PRs merged after the three-day wait went in. They were rebuilt and re-tested on every base branch push instead.",
+      "matchUpdateTypes": ["lockFileMaintenance"],
+      "minimumReleaseAge": null
+    },
     {
       "groupName": "devDependencies (minor/patch)",
       "matchDepTypes": ["devDependencies"],

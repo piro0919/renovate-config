@@ -30,7 +30,8 @@ major を通せないことがある。その場合は `legacy` を使う。mino
 
 ## What it does
 
-- Runs on weekends (Asia/Tokyo)
+- Runs on weekends (Asia/Tokyo), and leaves open PRs alone on weekdays (`updateNotScheduled: false`) so every push to the base branch does not rebase them and rerun CI
+- Waits three days after a release before proposing it (`minimumReleaseAge`), except for lock file maintenance, which has no release date to wait on
 - Auto-merges minor/patch updates (both `dependencies` and `devDependencies`)
 - Groups major updates per framework (Next.js, React, TypeScript, Tailwind, Biome) for manual review
 - Weekly lock file maintenance (Monday before 5am)
