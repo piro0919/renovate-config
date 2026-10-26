@@ -34,7 +34,7 @@ major を通せないことがある。その場合は `legacy` を使う。mino
 - Waits three days after a release before proposing it (`minimumReleaseAge`), except for lock file maintenance, which has no release date to wait on
 - Auto-merges minor/patch updates (both `dependencies` and `devDependencies`)
 - Groups major updates per framework (Next.js, React, TypeScript, Tailwind, Biome) for manual review
-- Weekly lock file maintenance (Monday before 5am)
+- Weekly lock file maintenance (Monday before 5am). Its PRs are still processed outside that window, because a skipped branch never reaches automerge
 - Bumps version ranges in `package.json` (`rangeStrategy: "bump"`)
 - Widens `peerDependencies` instead of bumping them (`rangeStrategy: "widen"`)
 

@@ -22,6 +22,11 @@
       "minimumReleaseAge": null
     },
     {
+      "description": "Renovate skips an out-of-schedule branch before it reaches automerge when updateNotScheduled is false. The lock file window is only Monday before 5am, and CI rarely finishes before the next run inside it, so these PRs never merged.",
+      "matchUpdateTypes": ["lockFileMaintenance"],
+      "updateNotScheduled": true
+    },
+    {
       "groupName": "devDependencies (minor/patch)",
       "matchDepTypes": ["devDependencies"],
       "matchUpdateTypes": ["minor", "patch", "pin", "digest"],
