@@ -35,6 +35,7 @@ major を通せないことがある。その場合は `legacy` を使う。mino
 - Auto-merges minor/patch updates (both `dependencies` and `devDependencies`)
 - Groups major updates per framework (Next.js, React, TypeScript, Tailwind, Biome) for manual review
 - Weekly lock file maintenance (Monday before 5am). Its PRs are still processed outside that window, because a skipped branch never reaches automerge
+- Regenerates npm lock files with npm 11 or older (`constraints.npm: "<12"`), unless the repo sets `engines.npm` itself
 - Bumps version ranges in `package.json` (`rangeStrategy: "bump"`)
 - Widens `peerDependencies` instead of bumping them (`rangeStrategy: "widen"`)
 
@@ -48,3 +49,11 @@ code that never needed the newer version. So peers only widen: `^18 || ^19`
 becomes `^18 || ^19 || ^20` when React 20 ships, and the floor stays wherever the
 library author set it. A range such as `>=18` already covers new majors, so
 Renovate leaves it alone. Raise a peer floor by hand when the code starts to need it.
+
+### Why npm stays below 12
+
+With no npm version in the repo, Renovate regenerates `package-lock.json` with the
+latest npm. npm 12 refuses git dependencies (`EALLOWGIT`) and some remote tarballs
+(`EALLOWREMOTE`) by default, and several repos pull `@piro0919/eslint-config` or
+`@piro0919/biome-config` from `github:`. The lock file refresh failed, and the lock
+file maintenance PRs kept a weeks-old lock file that no longer matched `package.json`.

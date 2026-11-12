@@ -10,6 +10,9 @@
   "platformAutomerge": true,
   "dependencyDashboard": true,
   "rangeStrategy": "bump",
+  "constraints": {
+    "npm": "<12"
+  },
   "minimumReleaseAge": "3 days",
   "lockFileMaintenance": {
     "enabled": true,
