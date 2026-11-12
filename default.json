@@ -11,7 +11,7 @@
   "dependencyDashboard": true,
   "rangeStrategy": "bump",
   "constraints": {
-    "npm": "<12"
+    "npm": "<11"
   },
   "minimumReleaseAge": "3 days",
   "lockFileMaintenance": {
