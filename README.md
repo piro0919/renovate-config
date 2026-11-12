@@ -62,3 +62,8 @@ npm 11 is not enough either. Most of these repos run CI on Node 22, which ships
 npm 10, and `npm ci` on npm 10 rejected a lock file written by npm 11 as out of
 sync (a nested copy that npm 11 resolves through a peer was missing). A lock file
 written by npm 10 passed `npm ci` on both npm 10 and npm 11.
+
+A repo can still raise it in its own `renovate.json` (`"constraints": { "npm": "<12" }`).
+siritori-timer does, because npm 10.9.10 crashes with `Cannot read properties of
+null (reading 'edgesOut')` while resolving its vitest peers, and the npm 11 lock
+file passes `npm ci` on npm 10 there.
